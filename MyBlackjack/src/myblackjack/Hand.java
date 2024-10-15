@@ -17,7 +17,7 @@ public class Hand {
     private boolean isBlackjack;
     private boolean hasOneAce;
     private boolean busted;
-    
+
     public Hand() {
         hand = new ArrayList<>();
         this.isBlackjack = false;
@@ -45,34 +45,38 @@ public class Hand {
     public boolean isBusted() {
         return busted;
     }
-    
+
     public void addCard(Card card) {
         this.hand.add(card);
     }
-    
+
     public int calculateTotalValue() {
         int handValue = 0;
-        int valuePerAce = 11;
-        
-        if (hasOneAce == true) {
-            valuePerAce = 1;
-        }
-        
+        int numberOfAces = 0;
+
         for (Card card : hand) {
             handValue += switch (card.getEnumValue()) {
                 case J, Q, K -> 10;
                 case A -> {
-                    hasOneAce = true;
-                    yield valuePerAce;
+                    numberOfAces++;
+                    yield 11;
                 }
                 default -> card.getEnumValue().getNumericValue();
             };
         }
-        
-        if (hasOneAce && handValue > 21) {
-            handValue -= 10;
+
+        if (handValue > 21 && numberOfAces > 1) {
+            for (int i = 0; i < numberOfAces - 1; i++) {
+                handValue -= 10;
+            }
         }
-                
+
+        if (handValue > 21 && numberOfAces == 1) {
+            for (int i = 0; i < numberOfAces; i++) {
+                handValue -= 10;
+            }
+        }
+
         totalValue = handValue;
         return totalValue;
     }
