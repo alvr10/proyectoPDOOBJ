@@ -20,14 +20,15 @@ public class MyBlackjack {
         Scanner scanner = new Scanner(System.in);
         String username = scanner.nextLine();
 
-        Player player = new Player(username);
-        Player dealer = new Player("dealer");
+        Person player = new Player(username);
+        Person dealer = new Dealer("dealer");
 
         Card card1 = new Card(Suit.CORAZONES, Value.A);
         Card card2 = new Card(Suit.PICAS, Value.CINCO);
         Card card3 = new Card(Suit.DIAMANTES, Value.A);
         Card card4 = new Card(Suit.TREBOLES, Value.DIEZ);
 
+        scanner.close();
     }
 
 }

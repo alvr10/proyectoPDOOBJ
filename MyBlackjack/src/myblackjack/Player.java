@@ -11,33 +11,21 @@ import java.util.Scanner;
  *
  * @author alvar
  */
-public class Player {
-    private String username;
-    private Hand hand;
+public class Player extends Person {
     private int money;
     private int bet;
     private int insuranceBet;
 
     public Player() {
-        this.username = "Player1";
-        this.hand = new Hand();
+        super();
         this.money = 1000;
         this.bet = 0;
     }
 
     public Player(String username) {
-        this.username = username;
-        this.hand = new Hand();
+        super(username);
         this.money = 1000;
         this.bet = 0;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Hand getHand() {
-        return hand;
     }
 
     public int getMoney() {
@@ -89,7 +77,7 @@ public class Player {
     }
 
     public void drawCard(Card card) {
-        hand.addCard(card);
+        getHand().addCard(card);
     }
 
     public void surrender() {
@@ -103,7 +91,7 @@ public class Player {
         bet *= 2;
         System.out.println("Has doblado la apuesta, recibes una sola carta.");
 
-        hand.addCard(card);
+        getHand().addCard(card);
         System.out.println("Rebiste: " + card.toString());
     }
 }
