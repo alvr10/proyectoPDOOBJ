@@ -5,14 +5,14 @@
 package myblackjack;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
  * @author alvar
  */
-public class Deck {
+public final class Deck {
     private final List<Card> cards;
     
     public Deck() {
@@ -22,9 +22,19 @@ public class Deck {
                 cards.add(new Card(suit, value));
             }
         }
+
+        shuffleCards();
+    }
+
+    public Deck(List<Card> cards) {
+        this.cards = cards;
+    }
+
+    public Deck(Deck other) {
+        this.cards = other.cards;
     }
     
-    public void shuffle() {
+    public void shuffleCards() {
         Collections.shuffle(cards);
     }
     

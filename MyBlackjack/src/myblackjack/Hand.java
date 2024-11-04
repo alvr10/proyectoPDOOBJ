@@ -4,8 +4,8 @@
  */
 package myblackjack;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,18 +15,37 @@ public class Hand {
     private final List<Card> hand;
     private int totalValue;
     private boolean isBlackjack;
-    private boolean hasOneAce;
     private boolean busted;
+    private boolean hasAce;
+    private boolean hasFigure;
 
     public Hand() {
         hand = new ArrayList<>();
-        this.isBlackjack = false;
-        this.hasOneAce = false;
-        this.busted = false;
         this.totalValue = 0;
+        this.isBlackjack = false;
+        this.busted = false;
+        this.hasAce = false;
+        this.hasFigure = false;
     }
 
-    public List<Card> getHand() {
+    public Hand(List<Card> cards) {
+        this.hand = cards;
+        this.isBlackjack = false;
+        this.busted = false;
+        this.hasAce = false;
+        this.hasFigure = false;
+    }
+
+    public Hand(Hand other) {
+        this.hand = other.hand;
+        this.totalValue = other.totalValue;
+        this.isBlackjack = other.isBlackjack;
+        this.busted = other.busted;
+        this.hasAce = other.hasAce;
+        this.hasFigure = other.hasFigure;
+    }
+
+    public List<Card> getCards() {
         return hand;
     }
 
@@ -36,10 +55,6 @@ public class Hand {
 
     public boolean isIsBlackjack() {
         return isBlackjack;
-    }
-
-    public boolean isHasOneAce() {
-        return hasOneAce;
     }
 
     public boolean isBusted() {
@@ -77,7 +92,39 @@ public class Hand {
             }
         }
 
+        if (handValue > 21) {
+            busted = true;
+        }
+
         totalValue = handValue;
         return totalValue;
+    }
+
+    public boolean checkForBlackjack() {
+        for (Card card : hand) {
+            switch (card.getEnumValue()) {
+                case A -> hasAce = true;
+                case J, Q, K -> hasFigure = true;
+                default -> {
+                }
+            }
+        }
+
+        isBlackjack = hasAce && hasFigure;
+        return isBlackjack;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hand{");
+        sb.append("hand=").append(hand);
+        sb.append(", totalValue=").append(totalValue);
+        sb.append(", isBlackjack=").append(isBlackjack);
+        sb.append(", busted=").append(busted);
+        sb.append(", hasAce=").append(hasAce);
+        sb.append(", hasFigure=").append(hasFigure);
+        sb.append('}');
+        return sb.toString();
     }
 }

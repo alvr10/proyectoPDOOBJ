@@ -4,8 +4,8 @@
  */
 package myblackjack;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -29,6 +29,11 @@ public class Shoe {
         for (int i = 0; i < numberOfDecks; i++) {
             shoe.add(new Deck());
         }
+    }
+
+    public Shoe(Shoe other) {
+        this.numberOfDecks = other.numberOfDecks;
+        this.shoe = other.shoe;
     }
     
     public List<Deck> getShoe() {
