@@ -8,7 +8,7 @@ package myblackjack;
 *
 * @author alvar
 */
-public interface vista {
+public interface Vista {
    void showCard(Card card);
    void updateScore(int playerScore, int dealerScore);
    void showMessage(String message);

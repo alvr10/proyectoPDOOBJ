@@ -11,20 +11,24 @@ package myblackjack;
 public class Card {
     private Suit suit;
     private Value value;
+    private String path;
     
     public Card() {
         this.suit = null;
         this.value = null;
+        this.path = "";
     }
     
-    public Card(Suit suit, Value value) {
+    public Card(Suit suit, Value value, String path) {
         this.suit = suit;
         this.value = value;
+        this.path = path;
     }
     
     public Card(Card other) {
         this.suit = other.suit;
         this.value = other.value;
+        this.path = other.path;
     }
     
     public Suit getSuit() {
@@ -35,12 +39,20 @@ public class Card {
         return value;
     }
     
+    public String getPath() {
+        return path;
+    }
+    
     public void setSuit(Suit suit) {
         this.suit = suit;
     }
     
     public void setValue(Value value) {
         this.value = value;
+    }
+    
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @Override
@@ -49,6 +61,7 @@ public class Card {
         sb.append("Card{");
         sb.append("suit=").append(suit);
         sb.append(", value=").append(value);
+        sb.append(", path=").append(path);
         sb.append('}');
         return sb.toString();
     }

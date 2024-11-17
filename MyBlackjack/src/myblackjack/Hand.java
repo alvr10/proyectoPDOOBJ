@@ -50,6 +50,7 @@ public class Hand {
     }
 
     public int getTotalValue() {
+        calculateTotalValue();
         return totalValue;
     }
 
@@ -112,6 +113,15 @@ public class Hand {
 
         isBlackjack = hasAce && hasFigure;
         return isBlackjack;
+    }
+    
+    public void reset() {
+        hand.clear();
+        totalValue = 0;
+        isBlackjack = false;
+        busted = false;
+        hasAce = false;
+        hasFigure = false;
     }
 
     @Override

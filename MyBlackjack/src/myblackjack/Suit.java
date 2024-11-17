@@ -9,5 +9,5 @@ package myblackjack;
  * @author alvar
  */
 public enum Suit {
-    CORAZONES, DIAMANTES, TREBOLES, PICAS;
+    CORAZONES, DIAMANTES, PICAS, TREBOLES;
 }

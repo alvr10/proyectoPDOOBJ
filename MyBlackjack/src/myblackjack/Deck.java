@@ -16,10 +16,19 @@ public final class Deck {
     private final List<Card> cards;
     
     public Deck() {
+        int i = 1;
         cards = new ArrayList<>();
         for (Suit suit : Suit.values()) {
             for (Value value : Value.values()) {
-                cards.add(new Card(suit, value));
+                String suffixNum = Integer.toString(i);
+                
+                if (i < 10) {
+                    suffixNum = "0" + i;
+                }
+                
+                String filePath = "images/card_" + suffixNum + ".png";
+                cards.add(new Card(suit, value, filePath));
+                i++;
             }
         }
 
